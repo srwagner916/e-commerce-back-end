@@ -33,7 +33,7 @@ router.get('/:id', (req, res) => {
     },
     include: [
       {
-        model: ProductTag,
+        model: Product,
         through: ProductTag,
         attributes: ['id', 'product_name', 'price', 'stock', 'category_id']
       }
@@ -105,6 +105,7 @@ router.delete('/:id', (req, res) => {
         res.status(404).json({ message: 'No tag with this ID found' });
         return;
       }
+      res.json(dbTagData);
     })
     .catch(err => {
       console.log(err);
